@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:layout_margin="8dp"
+    android:padding="16dp"
+    android:background="@drawable/card_background"
+    android:elevation="4dp">
+
+    <!-- Nome do Produto -->
+    <TextView
+        android:id="@+id/ProductName"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="produto"
+        android:textSize="16sp"
+        android:textColor="@color/branco"
+        android:layout_marginTop="8dp"/>
+
+    <!-- Preço do Produto -->
+    <TextView
+        android:id="@+id/ProductPrice"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="preco"
+        android:textSize="14sp"
+        android:textColor="@color/laranja"
+        android:layout_marginTop="4dp"/>
+</LinearLayout>

@@ -1,0 +1,78 @@
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:padding="16dp"
+    android:background="@color/branco"
+    android:gravity="center">
+
+    <TextView
+        android:id="@+id/tvTitleRegister"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="NNAYAS APP"
+        android:textColor="@color/laranja"
+        android:textSize="24sp"
+        android:layout_marginBottom="32dp"
+        android:gravity="center"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="REGISTRO"
+        android:textColor="@color/laranja"
+        android:textSize="18sp"
+        android:layout_marginBottom="48dp"
+        android:gravity="center"/>
+
+    <EditText
+        android:id="@+id/fieldNameRegistro"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Informe seu nome"
+        android:textColorHint="@color/laranja"
+        android:textColor="@color/preto"
+        android:padding="12dp"
+        android:layout_marginBottom="16dp"/>
+
+    <EditText
+        android:id="@+id/fieldEmailRegistro"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Informe seu email"
+        android:textColorHint="@color/laranja"
+        android:textColor="@color/preto"
+        android:padding="12dp"
+        android:layout_marginBottom="16dp"/>
+
+    <EditText
+        android:id="@+id/fieldPassRegistro"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Informe sua senha"
+        android:textColorHint="@color/laranja"
+        android:textColor="@color/preto"
+        android:padding="12dp"
+        android:inputType="textPassword"
+        android:layout_marginBottom="16dp"/>
+
+    <Button
+        android:id="@+id/btnRegister"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Registre-se"
+        android:textColor="@color/branco"
+        android:backgroundTint="@color/laranja"
+        android:layout_marginBottom="16dp"/>
+
+    <Button
+        android:id="@+id/btnLoginRegister"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Faça o login"
+        android:textColor="@color/branco"
+        android:backgroundTint="@color/laranja"
+        android:layout_marginBottom="16dp"/>
+
+</LinearLayout>

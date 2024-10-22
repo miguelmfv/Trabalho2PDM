@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="#F0F0EE">
+
+    <!-- Logo da NNAYAS e o nome -->
+    <TextView
+        android:id="@+id/logoTextView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="LOJA"
+        android:textSize="32sp"
+        android:textStyle="bold"
+        android:textColor="@color/laranja"
+        android:gravity="center"
+        android:padding="16dp"/>
+
+    <!-- Área de pesquisa de produto por nome -->
+    <EditText
+        android:id="@+id/searchEditText"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Pesquisar produto por nome"
+        android:textColorHint="#1E1E1E"
+        android:textColor="#1E1E1E"
+        android:padding="16dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginEnd="16dp"
+        android:background="#F0F0EE"/>
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1">
+
+        <LinearLayout
+            android:id="@+id/productsContainer"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:padding="16dp">
+
+            <ListView
+                android:id="@+id/productListView"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"/>
+        </LinearLayout>
+    </ScrollView>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:padding="16dp"
+        android:background="#F0F0EE">
+
+        <Button
+            android:id="@+id/btnLoja"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:backgroundTint="@color/laranja"
+            android:layout_weight="1"
+            android:padding="12dp"
+            android:text="Loja" />
+
+        <Button
+            android:id="@+id/btnCarrinho"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:backgroundTint="@color/laranja"
+
+            android:layout_weight="1"
+            android:padding="12dp"
+            android:text="Carrinho" />
+
+        <Button
+            android:id="@+id/btnPerfilLogin"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:backgroundTint="@color/laranja"
+
+            android:layout_weight="1"
+            android:padding="12dp"
+            android:text="Perfil" />
+    </LinearLayout>
+
+</LinearLayout>
