@@ -57,7 +57,7 @@ interface DAOUsuario {
     suspend fun selectAllUsuario(): List<Usuario>
 
     @Query("SELECT * FROM Usuario WHERE email = :email")
-    suspend fun selectUsuarioByEmailAndSenha(email: String): Usuario?
+    suspend fun selectUsuarioByEmail(email: String): Usuario?
 
     @Query("SELECT * FROM Usuario WHERE id = :id")
     suspend fun selectUsuarioID(id: Int): Usuario?

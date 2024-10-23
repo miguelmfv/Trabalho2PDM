@@ -14,7 +14,7 @@ import kotlinx.coroutines.launch
 class LoginActivity : AppCompatActivity() {
     private lateinit var binding: LoginActivityBinding
     private lateinit var usuarioDAO: DAOUsuario
-
+    private lateinit var user: Usuario
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = LoginActivityBinding.inflate(layoutInflater)
@@ -28,31 +28,36 @@ class LoginActivity : AppCompatActivity() {
             val password = binding.fieldPassLogin.text.toString()
 
             if (email.isNotEmpty() && password.isNotEmpty()) {
-                lifecycleScope.launch {
-                    val user = usuarioDAO.selectUsuarioByEmailAndSenha(email)
-                    if (user){
+                try {
+                    lifecycleScope.launch {
+                        user = usuarioDAO.selectUsuarioByEmail(email)!!
 
+                        if (user.senha == password) {
+                            val sharedPreferences = getSharedPreferences("user_session", MODE_PRIVATE)
+                            val editor = sharedPreferences.edit()
+                            editor.putInt("user_id", user.id)
+                            editor.apply()
+                        } else {
+                            Toast.makeText(this@LoginActivity, "Email ou senha incorretos!", Toast.LENGTH_LONG).show()
+                        }
                     }
+                    val intent = Intent(this, ProfileActivity::class.java)
+                    intent.putExtra("user_id", user.id)
+                    startActivity(intent)
+                    finish()
+                } catch (e: Exception) {
+                    Toast.makeText(this@LoginActivity, "Ocorreu um erro durante o login. Tente novamente.", Toast.LENGTH_LONG).show()
+                    e.printStackTrace()
                 }
-
-
-
-
-
-                val usuario = Usuario(email = email, senha = password)
-                lifecycleScope.launch {
-                    usuarioDAO.insertUsuario(usuario)
-                    binding.fieldNameRegistro.text.clear()
-                    binding.fieldEmailRegistro.text.clear()
-                    binding.fieldPassRegistro.text.clear()
-                    Toast.makeText(this@RegisterActivity, "Usuário adicionado", Toast.LENGTH_SHORT).show()
-                }
-                val intent = Intent(this, LoginActivity::class.java)
-                startActivity(intent)
-                finish()
             } else {
-                Toast.makeText(this, "Preencha todos os campos.", Toast.LENGTH_LONG).show()
+                Toast.makeText(this, "Por favor, preencha todos os campos.", Toast.LENGTH_LONG).show()
             }
+        }
+
+        binding.btnRegisterLogin.setOnClickListener {
+            val intent = Intent(this, RegisterActivity::class.java)
+            startActivity(intent)
+            finish()
         }
     }
 }

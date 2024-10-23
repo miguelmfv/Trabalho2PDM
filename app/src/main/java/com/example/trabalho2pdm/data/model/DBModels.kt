@@ -21,7 +21,7 @@ data class Produto (
         ForeignKey(
             entity = Usuario::class,
             parentColumns = ["id"],
-            childColumns = ["clienteID"],
+            childColumns = ["usuarioID"],
             onDelete = ForeignKey.CASCADE
         ),
         ForeignKey(
@@ -35,7 +35,7 @@ data class Produto (
 )
 data class Carrinho (
     @PrimaryKey(autoGenerate = true) val id: Int = 0,
-    val clienteID: Int,
+    val usuarioID: Int,
     val produtoID: Int,
     val precoTot: Double
 )
@@ -92,7 +92,7 @@ data class Pedido (
     ],
     indices = [Index("produtoID"), Index("carrinhoID")]
 )
-data class CarrinhoProduto (
+data class CarrinhoProduto(
     @PrimaryKey(autoGenerate = true) val id: Int = 0,
     val produtoID: Int,
     val carrinhoID: Int

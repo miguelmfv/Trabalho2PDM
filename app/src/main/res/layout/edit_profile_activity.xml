@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:padding="16dp"
+    android:background="@color/branco">
+
+    <!-- Campo para Nome -->
+    <TextView
+        android:id="@+id/campoNome"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Nome"
+        android:textSize="18sp"
+        android:textColor="@color/preto"
+        android:layout_marginTop="12dp"/>
+
+    <EditText
+        android:id="@+id/fieldNameAlterar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:backgroundTint="@color/preto"
+        android:padding="12dp"
+        android:textColor="@color/preto"
+        android:layout_marginBottom="16dp"/>
+
+    <!-- Campo para Email -->
+    <TextView
+        android:id="@+id/campoEmail"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Email"
+        android:textSize="18sp"
+        android:textColor="@color/preto"
+        android:layout_marginTop="12dp"/>
+
+    <EditText
+        android:id="@+id/fieldEmailEditar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:backgroundTint="@color/preto"
+        android:padding="12dp"
+        android:textColor="@color/preto"
+        android:layout_marginBottom="16dp"/>
+
+    <!-- Campo para Senha -->
+    <TextView
+        android:id="@+id/campoSenha"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Senha"
+        android:textSize="18sp"
+        android:textColor="@color/preto"
+        android:layout_marginTop="12dp"/>
+
+    <EditText
+        android:id="@+id/fieldPassEditar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:backgroundTint="@color/preto"
+        android:padding="12dp"
+        android:inputType="textPassword"
+        android:textColor="@color/preto"
+        android:layout_marginBottom="16dp"/>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:gravity="center"
+        android:layout_marginTop="24dp">
+
+        <Button
+            android:id="@+id/btnCancelarEditar"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="16dp"
+            android:backgroundTint="@color/preto"
+            android:gravity="center"
+            android:padding="12dp"
+            android:text="Cancelar"
+            android:textColor="@color/branco" />
+
+        <Button
+            android:id="@+id/btnAplicarEditar"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:backgroundTint="@color/preto"
+            android:gravity="center"
+            android:padding="12dp"
+            android:text="Aplicar"
+            android:textColor="@color/branco" />
+    </LinearLayout>
+
+</LinearLayout>

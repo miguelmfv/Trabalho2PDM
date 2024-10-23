@@ -44,5 +44,11 @@ class RegisterActivity : AppCompatActivity() {
                 Toast.makeText(this, "Preencha todos os campos.", Toast.LENGTH_LONG).show()
             }
         }
+
+        binding.btnLoginRegister.setOnClickListener {
+            val intent = Intent(this, LoginActivity::class.java)
+            startActivity(intent)
+            finish()
+        }
     }
 }

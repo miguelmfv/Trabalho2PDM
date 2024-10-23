@@ -2,7 +2,7 @@
   "formatVersion": 1,
   "database": {
     "version": 1,
-    "identityHash": "f336ef925f148dafedbd8401d1b2a599",
+    "identityHash": "0f5bb66dd067cc2d85d0fd8378dc10df",
     "entities": [
       {
         "tableName": "Produto",
@@ -44,7 +44,7 @@
       },
       {
         "tableName": "Carrinho",
-        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`id` INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, `clienteID` INTEGER NOT NULL, `produtoID` INTEGER NOT NULL, `precoTot` REAL NOT NULL, FOREIGN KEY(`clienteID`) REFERENCES `Cliente`(`id`) ON UPDATE NO ACTION ON DELETE CASCADE , FOREIGN KEY(`produtoID`) REFERENCES `CarrinhoProduto`(`id`) ON UPDATE NO ACTION ON DELETE CASCADE )",
+        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`id` INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, `usuarioID` INTEGER NOT NULL, `produtoID` INTEGER NOT NULL, `precoTot` REAL NOT NULL, FOREIGN KEY(`usuarioID`) REFERENCES `Usuario`(`id`) ON UPDATE NO ACTION ON DELETE CASCADE , FOREIGN KEY(`produtoID`) REFERENCES `CarrinhoProduto`(`id`) ON UPDATE NO ACTION ON DELETE CASCADE )",
         "fields": [
           {
             "fieldPath": "id",
@@ -53,8 +53,8 @@
             "notNull": true
           },
           {
-            "fieldPath": "clienteID",
-            "columnName": "clienteID",
+            "fieldPath": "usuarioID",
+            "columnName": "usuarioID",
             "affinity": "INTEGER",
             "notNull": true
           },
@@ -79,13 +79,13 @@
         },
         "indices": [
           {
-            "name": "index_Carrinho_clienteID",
+            "name": "index_Carrinho_usuarioID",
             "unique": false,
             "columnNames": [
-              "clienteID"
+              "usuarioID"
             ],
             "orders": [],
-            "createSql": "CREATE INDEX IF NOT EXISTS `index_Carrinho_clienteID` ON `${TABLE_NAME}` (`clienteID`)"
+            "createSql": "CREATE INDEX IF NOT EXISTS `index_Carrinho_usuarioID` ON `${TABLE_NAME}` (`usuarioID`)"
           },
           {
             "name": "index_Carrinho_produtoID",
@@ -99,11 +99,11 @@
         ],
         "foreignKeys": [
           {
-            "table": "Cliente",
+            "table": "Usuario",
             "onDelete": "CASCADE",
             "onUpdate": "NO ACTION",
             "columns": [
-              "clienteID"
+              "usuarioID"
             ],
             "referencedColumns": [
               "id"
@@ -123,8 +123,8 @@
         ]
       },
       {
-        "tableName": "Cliente",
-        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`id` INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, `nomeCliente` TEXT NOT NULL, `email` TEXT NOT NULL, `senha` TEXT NOT NULL)",
+        "tableName": "Usuario",
+        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`id` INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, `nomeUsuario` TEXT NOT NULL, `email` TEXT NOT NULL, `senha` TEXT NOT NULL)",
         "fields": [
           {
             "fieldPath": "id",
@@ -133,8 +133,8 @@
             "notNull": true
           },
           {
-            "fieldPath": "nomeCliente",
-            "columnName": "nomeCliente",
+            "fieldPath": "nomeUsuario",
+            "columnName": "nomeUsuario",
             "affinity": "TEXT",
             "notNull": true
           },
@@ -157,12 +157,22 @@
             "id"
           ]
         },
-        "indices": [],
+        "indices": [
+          {
+            "name": "index_Usuario_email",
+            "unique": true,
+            "columnNames": [
+              "email"
+            ],
+            "orders": [],
+            "createSql": "CREATE UNIQUE INDEX IF NOT EXISTS `index_Usuario_email` ON `${TABLE_NAME}` (`email`)"
+          }
+        ],
         "foreignKeys": []
       },
       {
         "tableName": "Pedido",
-        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`id` INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, `carrinhoID` INTEGER NOT NULL, `dataPedido` TEXT NOT NULL, FOREIGN KEY(`carrinhoID`) REFERENCES `Carrinho`(`id`) ON UPDATE NO ACTION ON DELETE CASCADE )",
+        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`id` INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, `carrinhoID` INTEGER NOT NULL, `usuarioID` INTEGER NOT NULL, `dataPedido` TEXT NOT NULL, FOREIGN KEY(`carrinhoID`) REFERENCES `Carrinho`(`id`) ON UPDATE NO ACTION ON DELETE CASCADE , FOREIGN KEY(`usuarioID`) REFERENCES `Usuario`(`id`) ON UPDATE NO ACTION ON DELETE CASCADE )",
         "fields": [
           {
             "fieldPath": "id",
@@ -173,6 +183,12 @@
           {
             "fieldPath": "carrinhoID",
             "columnName": "carrinhoID",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "usuarioID",
+            "columnName": "usuarioID",
             "affinity": "INTEGER",
             "notNull": true
           },
@@ -198,6 +214,15 @@
             ],
             "orders": [],
             "createSql": "CREATE INDEX IF NOT EXISTS `index_Pedido_carrinhoID` ON `${TABLE_NAME}` (`carrinhoID`)"
+          },
+          {
+            "name": "index_Pedido_usuarioID",
+            "unique": false,
+            "columnNames": [
+              "usuarioID"
+            ],
+            "orders": [],
+            "createSql": "CREATE INDEX IF NOT EXISTS `index_Pedido_usuarioID` ON `${TABLE_NAME}` (`usuarioID`)"
           }
         ],
         "foreignKeys": [
@@ -207,6 +232,17 @@
             "onUpdate": "NO ACTION",
             "columns": [
               "carrinhoID"
+            ],
+            "referencedColumns": [
+              "id"
+            ]
+          },
+          {
+            "table": "Usuario",
+            "onDelete": "CASCADE",
+            "onUpdate": "NO ACTION",
+            "columns": [
+              "usuarioID"
             ],
             "referencedColumns": [
               "id"
@@ -292,7 +328,7 @@
     "views": [],
     "setupQueries": [
       "CREATE TABLE IF NOT EXISTS room_master_table (id INTEGER PRIMARY KEY,identity_hash TEXT)",
-      "INSERT OR REPLACE INTO room_master_table (id,identity_hash) VALUES(42, 'f336ef925f148dafedbd8401d1b2a599')"
+      "INSERT OR REPLACE INTO room_master_table (id,identity_hash) VALUES(42, '0f5bb66dd067cc2d85d0fd8378dc10df')"
     ]
   }
 }
