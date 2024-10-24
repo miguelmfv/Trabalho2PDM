@@ -20,6 +20,9 @@ class RegisterActivity : AppCompatActivity() {
         binding = RegisterActivityBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
+        val sharedPref = getSharedPreferences("user_session", MODE_PRIVATE)
+        val userId = sharedPref.getInt("user_session", -1)
+
         val db = AppDatabase.getDatabase(this)
         usuarioDAO = db.usuarioDAO()
 
@@ -49,6 +52,17 @@ class RegisterActivity : AppCompatActivity() {
             val intent = Intent(this, LoginActivity::class.java)
             startActivity(intent)
             finish()
+        }
+
+        binding.btnPerfil.setOnClickListener {
+            val intent = Intent(this, ProfileActivity::class.java)
+            startActivity(intent)
+        }
+        binding.btnCarrinho.setOnClickListener {
+            //val intent = Intent(this, Activity::class.java)
+            //intent.putExtra("user_id", userId)
+            //startActivity(intent)
+            //finish()
         }
     }
 }

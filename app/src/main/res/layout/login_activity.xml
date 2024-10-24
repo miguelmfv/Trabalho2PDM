@@ -4,67 +4,109 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     android:padding="16dp"
-    android:background="@color/branco"
-    android:gravity="center">
+    android:background="@color/branco">
 
-    <TextView
-        android:id="@+id/tvTitleRegister"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="NNAYAS APP"
-        android:textColor="@color/laranja"
-        android:textSize="24sp"
-        android:layout_marginBottom="32dp"
-        android:gravity="center"/>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:orientation="vertical"
+        android:gravity="center">
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="LOGIN"
-        android:textColor="@color/laranja"
-        android:textSize="18sp"
-        android:layout_marginBottom="48dp"
-        android:gravity="center"/>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="NNAYAS APP"
+            android:textColor="@color/laranja"
+            android:textSize="24sp"
+            android:layout_marginBottom="32dp"
+            android:gravity="center"/>
 
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="LOGIN"
+            android:textColor="@color/laranja"
+            android:textSize="18sp"
+            android:layout_marginBottom="48dp"
+            android:gravity="center"/>
 
+        <EditText
+            android:id="@+id/fieldEmailLogin"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Informe seu email"
+            android:textColorHint="@color/laranja"
+            android:textColor="@color/preto"
+            android:padding="12dp"
+            android:layout_marginBottom="16dp"/>
 
-    <EditText
-        android:id="@+id/fieldEmailLogin"
+        <EditText
+            android:id="@+id/fieldPassLogin"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Informe sua senha"
+            android:textColorHint="@color/laranja"
+            android:textColor="@color/preto"
+            android:padding="12dp"
+            android:inputType="textPassword"
+            android:layout_marginBottom="16dp"/>
+
+        <Button
+            android:id="@+id/btnLogin"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Login"
+            android:textColor="@color/branco"
+            android:backgroundTint="@color/laranja"
+            android:layout_marginBottom="16dp"/>
+
+        <Button
+            android:id="@+id/btnRegisterLogin"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Faça o registro"
+            android:textColor="@color/branco"
+            android:backgroundTint="@color/laranja"
+            android:layout_marginBottom="16dp"/>
+
+    </LinearLayout>
+
+    <!-- Botões de navegação fixados na parte inferior -->
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:hint="Informe seu email"
-        android:textColorHint="@color/laranja"
-        android:textColor="@color/preto"
-        android:padding="12dp"
-        android:layout_marginBottom="16dp"/>
+        android:layout_gravity="bottom"
+        android:background="#F0F0EE"
+        android:orientation="horizontal"
+        android:padding="16dp">
 
-    <EditText
-        android:id="@+id/fieldPassLogin"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:hint="Informe sua senha"
-        android:textColorHint="@color/laranja"
-        android:textColor="@color/preto"
-        android:padding="12dp"
-        android:inputType="textPassword"
-        android:layout_marginBottom="16dp"/>
+        <Button
+            android:id="@+id/btnLoja"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:backgroundTint="@color/laranja"
+            android:padding="12dp"
+            android:text="Loja" />
 
-    <Button
-        android:id="@+id/btnLogin"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="Login"
-        android:textColor="@color/branco"
-        android:backgroundTint="@color/laranja"
-        android:layout_marginBottom="16dp"/>
+        <Button
+            android:id="@+id/btnCarrinho"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:backgroundTint="@color/laranja"
+            android:padding="12dp"
+            android:text="Carrinho" />
 
-    <Button
-        android:id="@+id/btnRegisterLogin"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="Faça o registro"
-        android:textColor="@color/branco"
-        android:backgroundTint="@color/laranja"
-        android:layout_marginBottom="16dp"/>
+        <Button
+            android:id="@+id/btnPerfil"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:backgroundTint="@color/laranja"
+            android:padding="12dp"
+            android:text="Perfil" />
+    </LinearLayout>
 
 </LinearLayout>

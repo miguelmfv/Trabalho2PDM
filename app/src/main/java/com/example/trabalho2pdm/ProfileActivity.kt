@@ -3,6 +3,7 @@ package com.example.trabalho2pdm
 import android.content.Intent
 import android.os.Bundle
 import android.util.Log
+import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.lifecycleScope
 import com.example.trabalho2pdm.data.dao.DAOUsuario
@@ -14,46 +15,49 @@ import kotlinx.coroutines.launch
 class ProfileActivity: AppCompatActivity() {
     private lateinit var binding: ProfileActivityBinding
     private lateinit var usuarioDAO: DAOUsuario
-    private lateinit var user: Usuario
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        val sharedPreferences = getSharedPreferences("user_session", MODE_PRIVATE)
-        val userId = sharedPreferences.getInt("user_id", -1)
+        binding = ProfileActivityBinding.inflate(layoutInflater)
+        setContentView(binding.root)
+
+        val sharedPref = getSharedPreferences("user_session", MODE_PRIVATE)
+        val userId = sharedPref.getInt("user_session", -1)
+
+        val db = AppDatabase.getDatabase(this)
+        usuarioDAO = db.usuarioDAO()
 
         if (userId != -1) { //prosseguir com o app
-            binding = ProfileActivityBinding.inflate(layoutInflater)
-            setContentView(binding.root)
-
-            val db = AppDatabase.getDatabase(this)
-            usuarioDAO = db.usuarioDAO()
-
             lifecycleScope.launch {
-                user = usuarioDAO.selectUsuarioID(userId)!!
+                val user = usuarioDAO.selectUsuarioID(userId)
+                user?.let {
+
+
+                    // Configurar a parte onde mostra os pedidos do cliente
+
+
+                    binding.ProfileUserName.text = user.nomeUsuario
+
+
+                    binding.btnEditar.setOnClickListener {
+
+                        Toast.makeText(this@ProfileActivity, "NÃO ESTÁ FUNCIONANDO!", Toast.LENGTH_SHORT).show()
+                        //val intent = Intent(this@ProfileActivity, EditUserActivity::class.java)
+                        //startActivity(intent)
+                    }
+                    binding.btnDeslogar.setOnClickListener {
+                        val sharedPreferences = getSharedPreferences("user_session", MODE_PRIVATE)
+                        val editor = sharedPreferences.edit()
+                        editor.clear()
+                        editor.apply()
+                        Toast.makeText(this@ProfileActivity, "Saindo!", Toast.LENGTH_SHORT).show()
+                        val intent = Intent(this@ProfileActivity, LoginActivity::class.java)
+                        startActivity(intent)
+                        finish()
+                    }
+                }
             }
-
-            binding.ProfileUserName.text = user.nomeUsuario
-            //configurar a parte onde mostra os pedidos do cliente
-
-
-            binding.btnEditar.setOnClickListener {
-                val intent = Intent(this, EditUserActivity::class.java)
-                intent.putExtra("user_id", userId)
-                startActivity(intent)
-                finish()
-            }
-
-            binding.btnDeslogar.setOnClickListener {
-                val sharedPreferences = getSharedPreferences("user_session", MODE_PRIVATE)
-                val editor = sharedPreferences.edit()
-                editor.clear()
-                editor.apply()
-                val intent = Intent(this, LoginActivity::class.java)
-                startActivity(intent)
-                finish()
-            }
-
-        } else {
+        }else {
             val intent = Intent(this, LoginActivity::class.java)
             startActivity(intent)
             finish()
@@ -70,4 +74,5 @@ class ProfileActivity: AppCompatActivity() {
             //finish()
         }
     }
+
 }
