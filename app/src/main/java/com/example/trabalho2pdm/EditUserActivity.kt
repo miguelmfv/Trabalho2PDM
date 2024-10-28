@@ -49,7 +49,7 @@ class EditUserActivity : AppCompatActivity() {
                     user = Usuario(nomeUsuario = nome, email = email, senha = senha)
                     lifecycleScope.launch {
                         try {
-                            usuarioDAO.updateUsuario(user)
+                            //usuarioDAO.updateUsuario(user)
                             Toast.makeText(this@EditUserActivity, "Usuário alterado!", Toast.LENGTH_SHORT).show()
                         } catch (e:Exception){
                             Toast.makeText(this@EditUserActivity, "Ocorreu algum problema!", Toast.LENGTH_LONG).show()

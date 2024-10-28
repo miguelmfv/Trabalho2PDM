@@ -38,9 +38,11 @@ class LoginActivity : AppCompatActivity() {
                         user = usuarioDAO.selectUsuarioByEmail(email)
 
                         if (user.senha == password) {
+                            Toast.makeText(this@LoginActivity, "Fazendo login!", Toast.LENGTH_LONG).show()
                             val sharedPreferences = getSharedPreferences("user_session", MODE_PRIVATE)
                             val editor = sharedPreferences.edit()
                             editor.putInt("user_id", user.id)
+                            editor.putBoolean("admin", user.nomeUsuario == "admin")
                             editor.apply()
 
                             val intent = Intent(this@LoginActivity, ProfileActivity::class.java)
@@ -56,7 +58,6 @@ class LoginActivity : AppCompatActivity() {
                     }
                 }
             } else {
-                // Campos obrigatórios não preenchidos
                 Toast.makeText(this, "Por favor, preencha todos os campos.", Toast.LENGTH_LONG).show()
             }
         }
@@ -70,12 +71,6 @@ class LoginActivity : AppCompatActivity() {
             val intent = Intent(this, ProfileActivity::class.java)
             intent.putExtra("user_id", userId)
             startActivity(intent)
-        }
-        binding.btnCarrinho.setOnClickListener {
-            //val intent = Intent(this, Activity::class.java)
-            //intent.putExtra("user_id", userId)
-            //startActivity(intent)
-            //finish()
         }
     }
 }

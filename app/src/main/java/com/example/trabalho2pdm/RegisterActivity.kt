@@ -58,11 +58,5 @@ class RegisterActivity : AppCompatActivity() {
             val intent = Intent(this, ProfileActivity::class.java)
             startActivity(intent)
         }
-        binding.btnCarrinho.setOnClickListener {
-            //val intent = Intent(this, Activity::class.java)
-            //intent.putExtra("user_id", userId)
-            //startActivity(intent)
-            //finish()
-        }
     }
 }

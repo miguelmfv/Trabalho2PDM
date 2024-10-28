@@ -13,17 +13,11 @@ interface DAOUsuario {
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     suspend fun insertUsuario(usuario: Usuario)
 
-    @Query("SELECT * FROM Usuario")
-    suspend fun selectAllUsuario(): List<Usuario>
-
     @Query("SELECT * FROM Usuario WHERE email = :email")
     suspend fun selectUsuarioByEmail(email: String): Usuario
 
     @Query("SELECT * FROM Usuario WHERE id = :id")
     suspend fun selectUsuarioID(id: Int): Usuario
-
-    @Update
-    suspend fun updateUsuario(usuario: Usuario)
 
     @Delete
     suspend fun deleteUsuario(usuario: Usuario)

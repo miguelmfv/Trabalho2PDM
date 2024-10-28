@@ -2,13 +2,13 @@ package com.example.trabalho2pdm
 
 import android.content.Intent
 import android.os.Bundle
-import android.util.Log
+import android.view.View
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.lifecycleScope
 import com.example.trabalho2pdm.data.dao.DAOUsuario
 import com.example.trabalho2pdm.data.database.AppDatabase
-import com.example.trabalho2pdm.data.model.Usuario
+import com.example.trabalho2pdm.databinding.ProductsManagerActivityBinding
 import com.example.trabalho2pdm.databinding.ProfileActivityBinding
 import kotlinx.coroutines.launch
 
@@ -22,7 +22,8 @@ class ProfileActivity: AppCompatActivity() {
         setContentView(binding.root)
 
         val sharedPref = getSharedPreferences("user_session", MODE_PRIVATE)
-        val userId = sharedPref.getInt("user_session", -1)
+        val userId = sharedPref.getInt("user_id", -1)
+        val isAdmin = sharedPref.getBoolean("admin", false)
 
         val db = AppDatabase.getDatabase(this)
         usuarioDAO = db.usuarioDAO()
@@ -38,13 +39,20 @@ class ProfileActivity: AppCompatActivity() {
 
                     binding.ProfileUserName.text = user.nomeUsuario
 
-
+                    if (isAdmin) {
+                        binding.btnAdmin.visibility = View.VISIBLE
+                    }
                     binding.btnEditar.setOnClickListener {
-
                         Toast.makeText(this@ProfileActivity, "NÃO ESTÁ FUNCIONANDO!", Toast.LENGTH_SHORT).show()
                         //val intent = Intent(this@ProfileActivity, EditUserActivity::class.java)
                         //startActivity(intent)
                     }
+
+                    binding.btnAdmin.setOnClickListener {
+                        val intent = Intent(this@ProfileActivity, ProductsManagerActivity::class.java)
+                        startActivity(intent)
+                    }
+
                     binding.btnDeslogar.setOnClickListener {
                         val sharedPreferences = getSharedPreferences("user_session", MODE_PRIVATE)
                         val editor = sharedPreferences.edit()
@@ -67,11 +75,6 @@ class ProfileActivity: AppCompatActivity() {
             val intent = Intent(this, MainActivity::class.java)
             startActivity(intent)
             finish()
-        }
-        binding.btnCarrinhoProfile.setOnClickListener {
-            //val intent = Intent(this, ProfileActivity::class.java)
-            //startActivity(intent)
-            //finish()
         }
     }
 
