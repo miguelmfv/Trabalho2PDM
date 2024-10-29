@@ -50,16 +50,15 @@ class ProfileActivity: AppCompatActivity() {
 
                     if (isAdmin) {
                         binding.btnAdmin.visibility = View.VISIBLE
+                        binding.btnAdmin.setOnClickListener {
+                            val intent = Intent(this@ProfileActivity, ProductsManagerActivity::class.java)
+                            startActivity(intent)
+                        }
                     }
                     binding.btnEditar.setOnClickListener {
                         Toast.makeText(this@ProfileActivity, "NÃO ESTÁ FUNCIONANDO!", Toast.LENGTH_SHORT).show()
                         //val intent = Intent(this@ProfileActivity, EditUserActivity::class.java)
                         //startActivity(intent)
-                    }
-
-                    binding.btnAdmin.setOnClickListener {
-                        val intent = Intent(this@ProfileActivity, ProductsManagerActivity::class.java)
-                        startActivity(intent)
                     }
 
                     binding.btnDeslogar.setOnClickListener {
