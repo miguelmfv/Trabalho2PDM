@@ -13,27 +13,12 @@
         android:id="@+id/tvTitleProductForm"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Gerenciamento de Produto"
+        android:text="Adicionar Produto"
         android:textColor="@color/laranja"
         android:textSize="24sp"
         android:layout_marginBottom="32dp"
         android:gravity="center"/>
 
-    <!-- Spinner para Seleção de Ação -->
-    <Spinner
-        android:id="@+id/spinnerProductActions"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="16dp"/>
-
-    <Button
-        android:id="@+id/buttonConfirmarAcao"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:textColor="@color/branco"
-        android:backgroundTint="@color/preto"
-        android:text="Confirmar Ação"/>
-    <!-- Campo para Nome do Produto -->
     <EditText
         android:id="@+id/fieldProductName"
         android:layout_width="match_parent"
@@ -75,5 +60,14 @@
         android:text="Adicionar Produto"
         android:textColor="@color/branco"
         android:backgroundTint="@color/laranja"
+        android:layout_marginBottom="16dp"/>\
+
+    <Button
+        android:id="@+id/btnVoltar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Voltar"
+        android:textColor="@color/laranja"
+        android:backgroundTint="@color/preto"
         android:layout_marginBottom="16dp"/>
 </LinearLayout>

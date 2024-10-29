@@ -1,14 +1,15 @@
 package com.example.trabalho2pdm
 
-import android.R
 import android.os.Bundle
 import android.util.Log
-import android.widget.ArrayAdapter
 import androidx.appcompat.app.AppCompatActivity
 import com.example.trabalho2pdm.data.dao.DAOProduto
 import com.example.trabalho2pdm.data.database.AppDatabase
 import com.example.trabalho2pdm.data.model.Produto
 import com.example.trabalho2pdm.databinding.ProductsManagerActivityBinding
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.GlobalScope
+import kotlinx.coroutines.launch
 
 class ProductsManagerActivity: AppCompatActivity() {
     private lateinit var binding: ProductsManagerActivityBinding
@@ -25,23 +26,25 @@ class ProductsManagerActivity: AppCompatActivity() {
         val db = AppDatabase.getDatabase(this)
         produtoDAO = db.produtoDAO()
 
-        val actions = listOf("Selecione uma ação", "Editar Produto", "Deletar Produto")
-        val adapter = ArrayAdapter(this, R.layout.simple_spinner_item, actions)
-        adapter.setDropDownViewResource(R.layout.simple_spinner_dropdown_item)
-        binding.spinnerProductActions.adapter = adapter
+        binding.btnAddProduct.setOnClickListener {
+            val nome = binding.fieldProductName.text.toString()
+            val desc = binding.fieldProductDescription.text.toString()
+            val valor = binding.fieldProductPrice.text.toString()
 
-        binding.buttonConfirmarAcao.setOnClickListener {
-            val acaoSelecionada = binding.spinnerProductActions.selectedItem.toString()
-            when (acaoSelecionada) {
-                "Editar Produto" -> mostrarEditar()
-
-                "Deletar Produto" -> Log.d("ProdutoActivity", "Ação: Deletar Produto")
-                else -> Log.d("ProdutoActivity", "Nenhuma ação válida selecionada")
+            if (nome.isNotEmpty() && desc.isNotEmpty() && valor.isNotEmpty()){
+                val valorzao = valor.toDouble()
+                val produto = Produto(nomeProduto = nome, descricao = desc, valor = valorzao)
+                GlobalScope.launch(Dispatchers.IO) {
+                    produtoDAO.insertProduto(produto)
+                }
+                finish()
+            } else{
+                Log.e("Inserir produto", "Preencha com todas as informações!")
             }
         }
-    }
 
-    private fun mostrarEditar() {
-
+        binding.btnVoltar.setOnClickListener {
+            finish()
+        }
     }
 }

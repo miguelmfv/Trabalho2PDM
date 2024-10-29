@@ -16,7 +16,7 @@ interface DAOProduto {
     @Query("SELECT * FROM Produto")
     suspend fun selectAllProdutos(): List<Produto>
 
-    @Query("SELECT * FROM Produto WHERE id = :id")
+    @Query("SELECT * FROM Produto WHERE idProduto = :id")
     suspend fun selectProdutoID(id: Int): Produto?
 
     @Delete

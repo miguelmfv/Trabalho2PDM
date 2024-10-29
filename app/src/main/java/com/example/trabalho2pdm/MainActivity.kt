@@ -3,7 +3,6 @@ package com.example.trabalho2pdm
 import android.content.Intent
 import android.os.Bundle
 import android.util.Log
-import android.widget.ArrayAdapter
 import android.widget.ListView
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
@@ -22,6 +21,7 @@ class MainActivity : AppCompatActivity() {
     private lateinit var listViewProducts: ListView
     private lateinit var produtoDAO: DAOProduto
     private lateinit var usuarioDAO: DAOUsuario
+    private lateinit var adapter: ProductAdapter
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -33,28 +33,35 @@ class MainActivity : AppCompatActivity() {
         val db = AppDatabase.getDatabase(this)
         usuarioDAO = db.usuarioDAO()
         produtoDAO = db.produtoDAO()
-        inserirProdutosExemplo()
+
+        // Carregar adapter
+        GlobalScope.launch(Dispatchers.IO) {
+            val produtos = produtoDAO.selectAllProdutos()
+
+            adapter = ProductAdapter(this@MainActivity, produtos) // Use o novo adaptador
+
+
+            binding.productListView.setOnItemClickListener { _, _, position, _ ->
+                val selectedProduct = produtos[position]
+                Log.d("MainActivity", "Produto selecionado ID: ${selectedProduct.idProduto}")
+                val intent = Intent(this@MainActivity, DetailedProductActivity::class.java)
+                intent.putExtra("product_id", selectedProduct.idProduto.toString())
+                this@MainActivity.startActivity(intent)
+            }
+        }
+
         carregarProdutos()
 
-        binding.btnPerfil.setOnClickListener {
+        binding.btnPerfilMain.setOnClickListener {
             val intent = Intent(this, ProfileActivity::class.java)
             startActivity(intent)
+            finish()
         }
-    }
 
-    private fun inserirProdutosExemplo() {
-        GlobalScope.launch(Dispatchers.IO) {
-            val produtosExemplo = listOf(
-                Produto(nomeProduto = "Camiseta Esportiva", descricao = "Camiseta com tecido respirável.", valor = 49.99),
-                Produto(nomeProduto = "Fone de Ouvido", descricao = "Fone de ouvido com cancelamento de ruído.", valor = 199.99),
-                Produto(nomeProduto = "Mouse Gamer", descricao = "Mouse com 6 botões e DPI ajustável.", valor = 129.99),
-                Produto(nomeProduto = "Teclado Mecânico", descricao = "Teclado RGB com switches mecânicos.", valor = 299.99),
-                Produto(nomeProduto = "Cadeira Gamer", descricao = "Cadeira ergonômica com ajuste de altura.", valor = 599.99)
-            )
-
-            produtosExemplo.forEach { produto ->
-                produtoDAO.insertProduto(produto)
-            }
+        binding.btnLojaMain.setOnClickListener {
+            val intent = Intent(this, MainActivity::class.java)
+            startActivity(intent)
+            finish()
         }
     }
 
@@ -72,7 +79,6 @@ class MainActivity : AppCompatActivity() {
                 if (produtos.isEmpty()) {
                     Toast.makeText(this@MainActivity, "Nenhum produto encontrado", Toast.LENGTH_SHORT).show()
                 } else {
-                    val adapter = ProductAdapter(this@MainActivity, produtos) // Use o novo adaptador
                     binding.productListView.adapter = adapter
                 }
             }

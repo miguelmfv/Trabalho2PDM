@@ -103,15 +103,6 @@
             android:text="Loja" />
 
         <Button
-            android:id="@+id/btnCarrinho"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:backgroundTint="@color/laranja"
-            android:padding="12dp"
-            android:text="Carrinho" />
-
-        <Button
             android:id="@+id/btnPerfil"
             android:layout_width="0dp"
             android:layout_height="wrap_content"

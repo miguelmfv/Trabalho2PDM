@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:padding="16dp"
+    android:background="@color/branco">
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="LOJA"
+        android:textColor="@color/laranja"
+        android:textSize="28sp"
+        android:layout_gravity="center_horizontal"
+        android:paddingTop="8dp"
+        android:paddingBottom="16dp" />
+
+    <TextView
+        android:id="@+id/fieldProductDetailedName"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="productName"
+        android:padding="12dp"
+        android:textColor="@color/laranja"
+        android:textSize="24sp"
+        android:gravity="right"
+        android:layout_marginBottom="8dp" />
+
+    <TextView
+        android:id="@+id/fieldProductDetailedPrice"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="productPrice"
+        android:padding="12dp"
+        android:textColor="@color/preto"
+        android:textSize="16sp"
+        android:gravity="right"
+        android:layout_marginBottom="16dp" />
+
+    <Button
+        android:id="@+id/btnBuy"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Realizar a compra"
+        android:textStyle="bold"
+        android:textColor="@color/laranja"
+        android:backgroundTint="@color/preto"
+        android:textSize="16sp"
+        android:layout_marginBottom="16dp" />
+
+    <TextView
+        android:id="@+id/productDescription"
+        android:layout_width="match_parent"
+        android:layout_height="340dp"
+        android:layout_marginBottom="16dp"
+        android:background="@drawable/card_background"
+        android:padding="16dp"
+        android:text="DESCRIÇÃO"
+        android:textColor="#FFFFFF"
+        android:textSize="16sp" />
+
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="bottom"
+            android:background="#F0F0EE"
+            android:orientation="horizontal"
+            android:padding="16dp">
+
+            <Button
+                android:id="@+id/btnLojaProduct"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:backgroundTint="@color/laranja"
+                android:padding="12dp"
+                android:text="Loja" />
+
+            <Button
+                android:id="@+id/btnPerfilProduct"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:backgroundTint="@color/laranja"
+                android:padding="12dp"
+                android:text="Perfil" />
+        </LinearLayout>
+    </FrameLayout>
+
+</LinearLayout>

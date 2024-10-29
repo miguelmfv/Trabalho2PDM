@@ -34,19 +34,18 @@ class LoginActivity : AppCompatActivity() {
 
             if (email.isNotEmpty() && password.isNotEmpty()) {
                 lifecycleScope.launch {
-                    try {
-                        user = usuarioDAO.selectUsuarioByEmail(email)
+                    user = usuarioDAO.selectUsuarioByEmail(email)
 
+                    try {
                         if (user.senha == password) {
                             Toast.makeText(this@LoginActivity, "Fazendo login!", Toast.LENGTH_LONG).show()
                             val sharedPreferences = getSharedPreferences("user_session", MODE_PRIVATE)
                             val editor = sharedPreferences.edit()
-                            editor.putInt("user_id", user.id)
+                            editor.putInt("user_id", user.idUsuario)
                             editor.putBoolean("admin", user.nomeUsuario == "admin")
                             editor.apply()
 
                             val intent = Intent(this@LoginActivity, ProfileActivity::class.java)
-                            intent.putExtra("user_id", user.id)
                             startActivity(intent)
                             finish()
                         } else {
@@ -65,12 +64,14 @@ class LoginActivity : AppCompatActivity() {
         binding.btnRegisterLogin.setOnClickListener {
             val intent = Intent(this, RegisterActivity::class.java)
             startActivity(intent)
+            finish()
         }
 
         binding.btnPerfil.setOnClickListener {
             val intent = Intent(this, ProfileActivity::class.java)
             intent.putExtra("user_id", userId)
             startActivity(intent)
+            finish()
         }
     }
 }

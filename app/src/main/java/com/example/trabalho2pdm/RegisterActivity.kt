@@ -57,6 +57,7 @@ class RegisterActivity : AppCompatActivity() {
         binding.btnPerfil.setOnClickListener {
             val intent = Intent(this, ProfileActivity::class.java)
             startActivity(intent)
+            finish()
         }
     }
 }

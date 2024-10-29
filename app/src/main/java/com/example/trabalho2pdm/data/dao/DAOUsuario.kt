@@ -16,7 +16,7 @@ interface DAOUsuario {
     @Query("SELECT * FROM Usuario WHERE email = :email")
     suspend fun selectUsuarioByEmail(email: String): Usuario
 
-    @Query("SELECT * FROM Usuario WHERE id = :id")
+    @Query("SELECT * FROM Usuario WHERE idUsuario = :id")
     suspend fun selectUsuarioID(id: Int): Usuario
 
     @Delete

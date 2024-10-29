@@ -25,6 +25,8 @@
         <activity android:name=".RegisterActivity"/>
         <activity android:name=".ProfileActivity"/>
         <activity android:name=".EditUserActivity"/>
+        <activity android:name=".ProductsManagerActivity"/>
+        <activity android:name=".DetailedProductActivity"/>
     </application>
 
 </manifest>
